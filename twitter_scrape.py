@@ -18,7 +18,7 @@ stop = stop.strftime('%Y-%m-%d')
 #Keyword
 keyword = 'Bitcoin'
 #Max numbers of Tweets
-maxTweets = 10**6
+maxTweets = 10**1
 #inizializing an empy list
 tweets_list = []
 
@@ -34,6 +34,8 @@ for i,tweet in enumerate(sntwitter.TwitterSearchScraper(keyword + ' since:' + st
 loop_end= tm.time()
 total_time = loop_end - loop_start
 print("execution time was:",str(total_time))
+
+tweets_list
 
 
 
