@@ -8,21 +8,27 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 
 # Getting data
-start = '2022-01-01'
+start = '2020-01-01'
 end = '2023-01-01'
-data = yf.download('BTC-USD', start=start, end=end,interval = "1h")
+data = yf.download('BTC-USD', start=start, end=end,interval = "1d")
 
+
+data['deviation'] = data.Close.diff()
 
 
 #Plotting ACF
-plot_acf(data.Close)
+plot_acf(data.deviation)
+plt.show()
+
+#Plotting data deviation
+data.deviation.plot()
 plt.show()
 
 #AR(1)
 # Estimating an AR(1) model
-mod = ARIMA(np.log(data.Close), order=(1,0,0), trend = 'n')
+mod = ARIMA(np.log(data.deviation), order=(1,0,0), trend = 'n')
 res = mod.fit()
-print(res.summary(), res.rsquared)
+print(res.summary())
 
 
 
